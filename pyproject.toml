@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bitcoinlib-rpc"
+version = "0.1.0"
+description = "Typed Python wrapper for Bitcoin Core RPC with analysis tools"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Bortlesboat" },
+]
+keywords = ["bitcoin", "rpc", "blockchain", "mempool", "analysis"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "requests>=2.28",
+    "pydantic>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Bortlesboat/bitcoinlib-rpc"
+Documentation = "https://bortlesboat.github.io/bitcoin-protocol-guide/tools/overview.html"
+Repository = "https://github.com/Bortlesboat/bitcoinlib-rpc"
+Issues = "https://github.com/Bortlesboat/bitcoinlib-rpc/issues"
+
+[project.scripts]
+bitcoin-mempool = "bitcoinlib_rpc.mempool:main"
+bitcoin-tx = "bitcoinlib_rpc.transactions:main"
+bitcoin-block = "bitcoinlib_rpc.blocks:main"
+bitcoin-fees = "bitcoinlib_rpc.fees:main"
+bitcoin-nextblock = "bitcoinlib_rpc.nextblock:main"
+bitcoin-status = "bitcoinlib_rpc.status:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bitcoinlib_rpc"]
