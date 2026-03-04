@@ -152,7 +152,7 @@ def print_block(analysis: BlockAnalysis) -> None:
         print()
         print(f"{'TOP FEE TRANSACTIONS':=^60}")
         for i, (txid, rate) in enumerate(analysis.top_fee_txids):
-            print(f"  [{i}] {txid[:16]}... → {rate:.1f} sat/vB")
+            print(f"  [{i}] {txid[:16]}... -> {rate:.1f} sat/vB")
 
 
 def main() -> None:

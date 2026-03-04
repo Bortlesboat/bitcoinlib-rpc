@@ -89,7 +89,7 @@ def print_next_block(data: dict) -> None:
         print()
         print(f"{'TOP 5 HIGHEST-FEE TXS':=^60}")
         for i, (txid, rate, fee) in enumerate(data["top_5"]):
-            print(f"  [{i}] {txid[:16]}... → {rate:.1f} sat/vB ({format_sats(fee)})")
+            print(f"  [{i}] {txid[:16]}... -> {rate:.1f} sat/vB ({format_sats(fee)})")
 
 
 def main() -> None:

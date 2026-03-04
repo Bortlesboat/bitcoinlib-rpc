@@ -25,7 +25,7 @@ def get_status(rpc: BitcoinRPC) -> NodeStatus:
         connections=peers,
         version=net["version"],
         subversion=net["subversion"],
-        network_name=net.get("networkactive", ""),
+        network_name=net.get("subversion", ""),
     )
 
 
