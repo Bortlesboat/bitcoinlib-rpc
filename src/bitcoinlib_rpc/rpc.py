@@ -155,6 +155,12 @@ class BitcoinRPC:
             return self.call("getchaintxstats", nblocks)
         return self.call("getchaintxstats")
 
+    def getblockheader(self, blockhash: str, verbose: bool = True) -> dict | str:
+        return self.call("getblockheader", blockhash, verbose)
+
+    def getchaintips(self) -> list:
+        return self.call("getchaintips")
+
     # --- Mempool ---
 
     def getmempoolinfo(self) -> dict:
@@ -166,6 +172,9 @@ class BitcoinRPC:
     def getmempoolentry(self, txid: str) -> dict:
         return self.call("getmempoolentry", txid)
 
+    def getmempoolancestors(self, txid: str, verbose: bool = False) -> list | dict:
+        return self.call("getmempoolancestors", txid, verbose)
+
     # --- Transactions ---
 
     def getrawtransaction(self, txid: str, verbose: int = 2) -> dict | str:
@@ -173,6 +182,14 @@ class BitcoinRPC:
 
     def decoderawtransaction(self, hexstring: str) -> dict:
         return self.call("decoderawtransaction", hexstring)
+
+    def decodescript(self, hexstring: str) -> dict:
+        return self.call("decodescript", hexstring)
+
+    def sendrawtransaction(self, hexstring: str, maxfeerate: float | None = None) -> str:
+        if maxfeerate is not None:
+            return self.call("sendrawtransaction", hexstring, maxfeerate)
+        return self.call("sendrawtransaction", hexstring)
 
     # --- Mining ---
 
@@ -207,6 +224,21 @@ class BitcoinRPC:
 
     def gettxout(self, txid: str, n: int, include_mempool: bool = True) -> dict | None:
         return self.call("gettxout", txid, n, include_mempool)
+
+    def scantxoutset(self, action: str, scanobjects: list) -> dict:
+        return self.call("scantxoutset", action, scanobjects)
+
+    # --- Validation ---
+
+    def validateaddress(self, address: str) -> dict:
+        return self.call("validateaddress", address)
+
+    # --- Help ---
+
+    def help(self, command: str = "") -> str:
+        if command:
+            return self.call("help", command)
+        return self.call("help")
 
     # --- Wallet (optional, may not be loaded) ---
 
